@@ -1,8 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { legacy_createStore as createStore } from 'redux';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+const initialState = {
+  counter: 1,
+  step: 1
+};
+
+function reducer(state = initialState, action) {
+  return { ...state }
+}
+
+const store = createStore(reducer);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
