@@ -12,7 +12,24 @@ const initialState = {
 };
 
 function reducer(state = initialState, action) {
-  return { ...state }
+  switch (action.type) {
+    case 'increment': {
+      const newState = {
+        ...state,
+        counter: state.counter + 1
+      }
+
+      return newState
+    }
+    case 'decrement': {
+
+      return {
+        ...state,
+        counter: state.counter - 1
+      }
+    }
+    default: return state;
+  }
 }
 
 const store = createStore(reducer);
