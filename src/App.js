@@ -1,61 +1,42 @@
-import React, { useCallback, useEffect, useReducer, useState } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 import './App.css';
 
-const initialState = 1;
-
-function reducer(state, action) {
-  switch (action.type) {
-    case 'increment': {
-
-      const newState = state + 1;
-
-      return newState;
-    }
-    case 'decrement': {
-
-      return state - 1;
-    }
-    default: return state;
-  }
-}
 
 function App(props) {
-
-  // const [count, setCount] = useState(1);
-  const [count, dispatch] = useReducer(reducer, initialState);
-
-
-  const decrement = useCallback(() => {
-    const action = {
-      type: 'decrement'
-    }
-
-    dispatch(action)
-  }, [count]);
-
-  const increment = () => {
-    const action = {
-      type: 'increment'
-    }
-
-    dispatch(action)
-  };
-
-  useEffect(function effects() {
-    // componentDidMount , componentDidUpdate
-    console.log('decrement changed')
-    return function clearEffects() {
-      // componentWillUnmount але також перед кожним componentDidUpdate (effects)
-    }
-  }, [decrement])
+  const { counter, dispatch } = props;
 
   return (
     <div>
-      <p>Current count is {count}</p>
-      <button onClick={decrement}>-</button>
-      <button onClick={increment}>+</button>
+      <p>Current count is {counter}</p>
+      <button >-</button>
+      <button >+</button>
     </div>
   );
 }
 
-export default App;
+// отримує стейт зі стору редаксу
+// повератє об'єкт, який додає до пропсів компоненту
+// який під'єднуємо
+function mapStateToProps(state) {
+
+  // return state;
+
+  return {
+    counter: state.counter,
+    secret: 'test data'
+  }
+}
+
+// Компонент вищого порядку, який буде приймати
+// Реактівський компонент і повертати інший компонент
+// у якого буде в пропсах дані з mapStateToProps
+// const withStoreData = connect(mapStateToProps);
+
+// Підсумковий компонент
+// const AppWithData = withStoreData(App);
+
+// export default AppWithData;
+
+
+export default connect(mapStateToProps)(App)
