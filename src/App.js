@@ -6,11 +6,27 @@ import './App.css';
 function App(props) {
   const { counter, dispatch } = props;
 
+  const decrement = () => {
+    const decrementAction = {
+      type: 'decrement'
+    }
+
+    dispatch(decrementAction)
+  }
+
+  const increment = () => {
+    const incrementAction = {
+      type: 'increment'
+    }
+
+    dispatch(incrementAction)
+  }
+
   return (
     <div>
       <p>Current count is {counter}</p>
-      <button >-</button>
-      <button >+</button>
+      <button onClick={decrement}>-</button>
+      <button onClick={increment}>+</button>
     </div>
   );
 }
