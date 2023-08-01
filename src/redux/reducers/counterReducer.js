@@ -1,3 +1,5 @@
+import ACTION_TYPES from "../actions/actionTypes";
+
 const initialState = {
   counter: 1,
   step: 1
@@ -5,7 +7,7 @@ const initialState = {
 
 function counterReducer(state = initialState, action) {
   switch (action.type) {
-    case 'increment': {
+    case ACTION_TYPES.INCREMENT: {
       const newState = {
         ...state,
         counter: state.counter + 1
@@ -13,7 +15,7 @@ function counterReducer(state = initialState, action) {
 
       return newState
     }
-    case 'decrement': {
+    case ACTION_TYPES.DECREMENT: {
 
       return {
         ...state,

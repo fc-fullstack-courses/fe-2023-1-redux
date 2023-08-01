@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './App.css';
+import ACTION_TYPES from './redux/actions/actionTypes';
 
 
 function App(props) {
@@ -8,7 +9,7 @@ function App(props) {
 
   const decrement = () => {
     const decrementAction = {
-      type: 'decrement'
+      type: ACTION_TYPES.DECREMENT
     }
 
     dispatch(decrementAction)
@@ -16,7 +17,7 @@ function App(props) {
 
   const increment = () => {
     const incrementAction = {
-      type: 'increment'
+      type: ACTION_TYPES.INCREMENT
     }
 
     dispatch(incrementAction)
