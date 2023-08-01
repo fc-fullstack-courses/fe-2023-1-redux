@@ -1,26 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './App.css';
-import ACTION_TYPES from './redux/actions/actionTypes';
+import * as ActionCreators from './redux/actions/actionCreators';
 
 
 function App(props) {
   const { counter, dispatch } = props;
 
   const decrement = () => {
-    const decrementAction = {
-      type: ACTION_TYPES.DECREMENT
-    }
+    const decrementAction = ActionCreators.decrement();
 
-    dispatch(decrementAction)
+    dispatch(decrementAction);
   }
 
   const increment = () => {
-    const incrementAction = {
-      type: ACTION_TYPES.INCREMENT
-    }
+    const incrementAction = ActionCreators.increment();
 
-    dispatch(incrementAction)
+    dispatch(incrementAction);
   }
 
   return (
