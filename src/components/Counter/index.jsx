@@ -2,23 +2,23 @@ import React from 'react';
 import * as ActionCreators from '../../redux/actions/actionCreators';
 import { connect } from 'react-redux';
 
-const Counter = ({ counter, step, dispatch }) => {
-  const decrement = () => {
-    const decrementAction = ActionCreators.decrement();
-
-    dispatch(decrementAction);
-  };
+const Counter = ({
+  counter,
+  step,
+  incrementAction,
+  decrementAction,
+  changeStepAction,
+}) => {
 
   const increment = () => {
-    const incrementAction = ActionCreators.increment();
-
-    dispatch(incrementAction);
+    incrementAction();
+  };
+  const decrement = () => {
+    decrementAction();
   };
 
   const changeStep = ({ target: { value } }) => {
-    const setStepAction = ActionCreators.changeStep(Number(value));
-
-    dispatch(setStepAction);
+    changeStepAction(Number(value));
   };
 
   return (
@@ -40,4 +40,12 @@ const mapStateToProps = (state) => ({
   step: state.counter.step,
 });
 
-export default connect(mapStateToProps)(Counter);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    incrementAction: () => dispatch(ActionCreators.increment()),
+    decrementAction: () => dispatch(ActionCreators.decrement()),
+    changeStepAction: (value) => dispatch(ActionCreators.changeStep(value)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);

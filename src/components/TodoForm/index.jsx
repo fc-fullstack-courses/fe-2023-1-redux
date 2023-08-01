@@ -6,9 +6,9 @@ const initialState = {
   taskText: '',
 };
 
-const ToDoForm = ({ dispatch }) => {
+const ToDoForm = ({ createTaskAction }) => {
   const submitHandler = (values, formikBag) => {
-    dispatch(ActionCreators.createTask(values.taskText));
+    createTaskAction(values.taskText);
     formikBag.resetForm();
   };
 
@@ -22,4 +22,8 @@ const ToDoForm = ({ dispatch }) => {
   );
 };
 
-export default connect()(ToDoForm);
+const mDtP = (dispatch) => ({
+  createTaskAction: (taskText) => dispatch(ActionCreators.createTask(taskText)),
+});
+
+export default connect(null, mDtP)(ToDoForm);
