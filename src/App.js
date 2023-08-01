@@ -1,12 +1,16 @@
 import React from 'react';
 import Counter from './components/Counter';
 import './App.css';
+import TodoForm from './components/TodoForm';
+import TodoList from './components/TodoList';
 
 function App(props) {
 
   return (
     <div>
       <Counter />
+      <TodoForm />
+      <TodoList />
     </div>
   );
 }

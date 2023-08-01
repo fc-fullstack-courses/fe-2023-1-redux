@@ -33,7 +33,7 @@ const TodoList = ({ tasks, dispatch }) => {
 };
 
 const mStP = (state) => ({
-  tasks: state.tasks,
+  tasks: state.task.tasks,
 });
 
 export default connect(mStP)(TodoList);

@@ -36,8 +36,8 @@ const Counter = ({ counter, step, dispatch }) => {
 };
 
 const mapStateToProps = (state) => ({
-  counter: state.counter,
-  step: state.step,
+  counter: state.counter.counter,
+  step: state.counter.step,
 });
 
 export default connect(mapStateToProps)(Counter);
