@@ -1,35 +1,12 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import Counter from './components/Counter';
 import './App.css';
-import * as ActionCreators from './redux/actions/actionCreators';
 
 function App(props) {
-  const { counter, step, dispatch } = props;
-
-  const decrement = () => {
-    const decrementAction = ActionCreators.decrement();
-
-    dispatch(decrementAction);
-  }
-
-  const increment = () => {
-    const incrementAction = ActionCreators.increment();
-
-    dispatch(incrementAction);
-  }
-
-  const changeStep = ({ target: { value } }) => {
-    const setStepAction = ActionCreators.changeStep(Number(value))
-
-    dispatch(setStepAction)
-  }
 
   return (
     <div>
-      <p>Current count is {counter}</p>
-      <div><label>Step is <input value={step} onChange={changeStep} /></label></div>
-      <button onClick={decrement}>-</button>
-      <button onClick={increment}>+</button>
+      <Counter />
     </div>
   );
 }
@@ -37,15 +14,15 @@ function App(props) {
 // отримує стейт зі стору редаксу
 // повератє об'єкт, який додає до пропсів компоненту
 // який під'єднуємо
-function mapStateToProps(state) {
+// function mapStateToProps(state) {
 
-  // return state;
+//   // return state;
 
-  return {
-    counter: state.counter,
-    step: state.step
-  }
-}
+//   return {
+//     counter: state.counter,
+//     step: state.step
+//   }
+// }
 
 // Компонент вищого порядку, який буде приймати
 // Реактівський компонент і повертати інший компонент
@@ -58,7 +35,9 @@ function mapStateToProps(state) {
 // export default AppWithData;
 
 
-export default connect(mapStateToProps)(App)
+// export default connect(mapStateToProps)(App)
+
+export default App;
 
 /*
   Redux
