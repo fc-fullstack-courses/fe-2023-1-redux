@@ -11,3 +11,14 @@ export const decrement = () => {
     type: ACTION_TYPES.DECREMENT
   }
 }
+/**
+ * 
+ * @param {number} newStep 
+ * @returns 
+ */
+export const changeStep = (newStep) => {
+  return {
+    type: ACTION_TYPES.CHANGE_STEP,
+    payload: newStep
+  }
+}

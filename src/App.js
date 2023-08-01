@@ -3,9 +3,8 @@ import { connect } from 'react-redux';
 import './App.css';
 import * as ActionCreators from './redux/actions/actionCreators';
 
-
 function App(props) {
-  const { counter, dispatch } = props;
+  const { counter, step, dispatch } = props;
 
   const decrement = () => {
     const decrementAction = ActionCreators.decrement();
@@ -19,9 +18,16 @@ function App(props) {
     dispatch(incrementAction);
   }
 
+  const changeStep = ({ target: { value } }) => {
+    const setStepAction = ActionCreators.changeStep(Number(value))
+
+    dispatch(setStepAction)
+  }
+
   return (
     <div>
       <p>Current count is {counter}</p>
+      <div><label>Step is <input value={step} onChange={changeStep} /></label></div>
       <button onClick={decrement}>-</button>
       <button onClick={increment}>+</button>
     </div>
@@ -37,7 +43,7 @@ function mapStateToProps(state) {
 
   return {
     counter: state.counter,
-    secret: 'test data'
+    step: state.step
   }
 }
 

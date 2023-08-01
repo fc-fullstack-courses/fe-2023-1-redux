@@ -10,7 +10,7 @@ function counterReducer(state = initialState, action) {
     case ACTION_TYPES.INCREMENT: {
       const newState = {
         ...state,
-        counter: state.counter + 1
+        counter: state.counter + state.step
       }
 
       return newState
@@ -19,7 +19,14 @@ function counterReducer(state = initialState, action) {
 
       return {
         ...state,
-        counter: state.counter - 1
+        counter: state.counter - state.step
+      }
+    }
+    case ACTION_TYPES.CHANGE_STEP: {
+
+      return {
+        ...state,
+        step: action.payload
       }
     }
     default: return state;
