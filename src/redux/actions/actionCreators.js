@@ -22,3 +22,24 @@ export const changeStep = (newStep) => {
     payload: newStep
   }
 }
+
+export const createTask = (taskText) => ({
+  type: ACTION_TYPES.CREATE_TASK,
+  payload: taskText
+});
+
+export const deleteTask = (id) => ({
+  type: ACTION_TYPES.DELETE_TASK,
+  payload: id
+})
+/**
+ * 
+ * @param {object} updateData 
+ * @param {number} updateData.id 
+ * @param {object} updateData.newValues 
+ * @returns 
+ */
+export const updateTask = ({id, newValues}) => ({
+  type: ACTION_TYPES.UPDATE_TASK,
+  payload: { id, newValues }
+})
