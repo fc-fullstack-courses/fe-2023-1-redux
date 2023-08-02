@@ -1,17 +1,24 @@
 import React from 'react';
 import { Field, Form, Formik } from 'formik';
+import { connect } from 'react-redux';
+import * as UserActionCreators from '../../redux/actions/userActionCreators';
 
 const initialValues = {
   firstName: '',
   lastName: '',
   email: '',
   password: '',
-  gender: 'male',
+  isMale: 'male',
 };
 
-const SignUpForm = (props) => {
+const SignUpForm = ({createUserAction}) => {
   const submitHandler = (values, formikBag) => {
     // console.log(values);
+    const newUser = {
+      ...values,
+      isMale : values.isMale === 'male'
+    }
+    createUserAction(newUser)
     formikBag.resetForm();
   };
 
@@ -25,10 +32,10 @@ const SignUpForm = (props) => {
         <fieldset>
           <legend>Choose your gender</legend>
           <label>
-            <Field type='radio' name='gender' value='male' /> Male
+            <Field type='radio' name='isMale' value='male' /> Male
           </label>
           <label>
-            <Field type='radio' name='gender' value='female' /> Female
+            <Field type='radio' name='isMale' value='female' /> Female
           </label>
         </fieldset>
         <button type='submit'>Sign Up</button>
@@ -37,4 +44,9 @@ const SignUpForm = (props) => {
   );
 };
 
-export default SignUpForm;
+const mDtP = (dispatch) => ({
+  createUserAction: (values) =>
+    dispatch(UserActionCreators.createUserRequest(values)),
+});
+
+export default connect(null, mDtP)(SignUpForm);
