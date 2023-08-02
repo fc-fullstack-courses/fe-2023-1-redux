@@ -4,7 +4,10 @@ const ACTION_TYPES = {
   CHANGE_STEP: 'changeStep',
   CREATE_TASK: 'createTask',
   DELETE_TASK: 'deleteTask',
-  UPDATE_TASK: 'updateTask'
+  UPDATE_TASK: 'updateTask',
+  CREATE_USER_REQUEST: 'createUserRequest',
+  CREATE_USER_SUCCESS: 'createUserRequestSuccess',
+  CREATE_USER_ERROR: 'createUserError',
 }
 
 export default ACTION_TYPES;

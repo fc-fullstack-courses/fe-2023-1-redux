@@ -1,10 +1,12 @@
 import { combineReducers } from "redux";
 import counterReducer from "./counterReducer";
 import taskReducer from "./taskReducer";
+import userReducer from "./userReducer";
 
 const rootReducer = combineReducers({
   counter: counterReducer,
-  task: taskReducer
+  task: taskReducer,
+  user: userReducer
 });
 
 const oldState = {
@@ -20,6 +22,11 @@ const newState = {
   task : {
     tasks: [],
     counter: 500
+  },
+  user: {
+    users: [],
+    isLoading: false,
+    error: null
   }
 }
 
