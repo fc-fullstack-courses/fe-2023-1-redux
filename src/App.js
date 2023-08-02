@@ -1,17 +1,18 @@
 import React from 'react';
-import Counter from './components/Counter';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import HomePage from './pages/Home';
 import './App.css';
-import TodoForm from './components/TodoForm';
-import TodoList from './components/TodoList';
+import SignUpPage from './pages/SignUp';
 
 function App(props) {
 
   return (
-    <div>
-      <Counter />
-      <TodoForm />
-      <TodoList />
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/signup" component={SignUpPage} />
+      </Switch>
+    </Router>
   );
 }
 
