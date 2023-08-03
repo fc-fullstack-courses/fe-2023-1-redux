@@ -1,6 +1,7 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
 import * as ActionCreators from '../../redux/actions/actionCreators';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Counter = (props) => {
   // const { counter, step } = useSelector((state) => {
@@ -15,16 +16,22 @@ const Counter = (props) => {
   // });
 
   const { counter, step } = useSelector((state) => state.counter);
+  const dispatch = useDispatch();
 
-  const increment = () => {
-    // incrementAction();
+  const { increment, decrement, changeStep } = bindActionCreators(
+    ActionCreators,
+    dispatch
+  );
+
+  const incrementHandler = () => {
+    increment();
   };
-  const decrement = () => {
-    // decrementAction();
+  const decrementHandler = () => {
+    decrement();
   };
 
-  const changeStep = ({ target: { value } }) => {
-    // changeStepAction(Number(value));
+  const changeStepHandler = ({ target: { value } }) => {
+    changeStep(Number(value));
   };
 
   return (
@@ -32,11 +39,11 @@ const Counter = (props) => {
       <p>Current count is {counter}</p>
       <div>
         <label>
-          Step is <input value={step} onChange={changeStep} />
+          Step is <input value={step} onChange={changeStepHandler} />
         </label>
       </div>
-      <button onClick={decrement}>-</button>
-      <button onClick={increment}>+</button>
+      <button onClick={decrementHandler}>-</button>
+      <button onClick={incrementHandler}>+</button>
     </div>
   );
 };
