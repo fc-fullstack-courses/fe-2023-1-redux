@@ -1,24 +1,30 @@
 import React from 'react';
 import * as ActionCreators from '../../redux/actions/actionCreators';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-const Counter = ({
-  counter,
-  step,
-  incrementAction,
-  decrementAction,
-  changeStepAction,
-}) => {
+const Counter = (props) => {
+  // const { counter, step } = useSelector((state) => {
+  //   const {
+  //     counter: { counter, step },
+  //   } = state;
+
+  //   return {
+  //     counter,
+  //     step,
+  //   };
+  // });
+
+  const { counter, step } = useSelector((state) => state.counter);
 
   const increment = () => {
-    incrementAction();
+    // incrementAction();
   };
   const decrement = () => {
-    decrementAction();
+    // decrementAction();
   };
 
   const changeStep = ({ target: { value } }) => {
-    changeStepAction(Number(value));
+    // changeStepAction(Number(value));
   };
 
   return (
@@ -35,17 +41,19 @@ const Counter = ({
   );
 };
 
-const mapStateToProps = (state) => ({
-  counter: state.counter.counter,
-  step: state.counter.step,
-});
+// const mapStateToProps = (state) => ({
+//   counter: state.counter.counter,
+//   step: state.counter.step,
+// });
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    incrementAction: () => dispatch(ActionCreators.increment()),
-    decrementAction: () => dispatch(ActionCreators.decrement()),
-    changeStepAction: (value) => dispatch(ActionCreators.changeStep(value)),
-  };
-};
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     incrementAction: () => dispatch(ActionCreators.increment()),
+//     decrementAction: () => dispatch(ActionCreators.decrement()),
+//     changeStepAction: (value) => dispatch(ActionCreators.changeStep(value)),
+//   };
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Counter);
+// export default connect(mapStateToProps, mapDispatchToProps)(Counter);
+
+export default Counter;
