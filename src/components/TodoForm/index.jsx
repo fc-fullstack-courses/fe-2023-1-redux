@@ -1,14 +1,16 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Form, Formik, Field } from 'formik';
-import * as ActionCreators from '../../redux/actions/actionCreators';
+import { createTask } from '../../redux/slices/todoSlice';
+import { useDispatch } from 'react-redux';
+
 const initialState = {
   taskText: '',
 };
 
-const ToDoForm = ({ createTaskAction }) => {
+const ToDoForm = (props) => {
+  const dispatch = useDispatch();
   const submitHandler = (values, formikBag) => {
-    createTaskAction(values.taskText);
+    dispatch(createTask(values.taskText));
     formikBag.resetForm();
   };
 
@@ -22,8 +24,6 @@ const ToDoForm = ({ createTaskAction }) => {
   );
 };
 
-const mDtP = (dispatch) => ({
-  createTaskAction: (taskText) => dispatch(ActionCreators.createTask(taskText)),
-});
 
-export default connect(null, mDtP)(ToDoForm);
+
+export default ToDoForm;

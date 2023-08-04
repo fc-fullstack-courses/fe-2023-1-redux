@@ -1,17 +1,22 @@
 import React from 'react';
-import * as ActionCreators from '../../redux/actions/actionCreators';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
+import { deleteTask, updateTask } from '../../redux/slices/todoSlice';
 
-const TodoList = ({ tasks, deleteAction, updateTaskAction }) => {
+const TodoList = ({ tasks }) => {
+  const dispatch = useDispatch();
   const tasksList = tasks.map((task) => (
     <li key={task.id}>
       <input
         type='checkbox'
         checked={task.isDone}
-        onChange={() => updateTaskAction(task.id, { isDone: !task.isDone })}
+        onChange={() =>
+          dispatch(
+            updateTask({ id: task.id, newValues: { isDone: !task.isDone } })
+          )
+        }
       />
       <span>{task.body}</span>
-      <button onClick={() => deleteAction(task.id)}>Delete task</button>
+      <button onClick={() => dispatch(deleteTask(task.id))}>Delete task</button>
     </li>
   ));
 
@@ -27,12 +32,4 @@ const mStP = (state) => ({
   tasks: state.task.tasks,
 });
 
-const mDtP = (dispatch) => {
-  return {
-    deleteAction: (id) => dispatch(ActionCreators.deleteTask(id)),
-    updateTaskAction: (id, newValues) =>
-      dispatch(ActionCreators.updateTask({ id, newValues })),
-  };
-};
-
-export default connect(mStP, mDtP)(TodoList);
+export default connect(mStP)(TodoList);
