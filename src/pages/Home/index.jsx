@@ -6,9 +6,9 @@ import TodoList from '../../components/TodoList'
 const HomePage = () => {
   return (
     <div>
-      {/* <Counter />
-      <TodoForm />
-      <TodoList /> */}
+      <Counter />
+      {/* <TodoForm /> */}
+      {/* <TodoList /> */}
     </div>
   )
 }

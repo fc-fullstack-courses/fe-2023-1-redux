@@ -1,27 +1,48 @@
+import { createAction } from "@reduxjs/toolkit";
 import ACTION_TYPES from "./actionTypes";
 
-export function increment() {
-  return {
-    type: ACTION_TYPES.INCREMENT
-  }
-}
+export const increment = createAction('increment');
 
-export const decrement = () => {
-  return {
-    type: ACTION_TYPES.DECREMENT
-  }
-}
-/**
- * 
- * @param {number} newStep 
- * @returns 
- */
-export const changeStep = (newStep) => {
-  return {
-    type: ACTION_TYPES.CHANGE_STEP,
-    payload: newStep
-  }
-}
+console.log(increment.toString());
+console.log(increment.type);
+
+export const decrement = createAction('decrement');
+
+export const changeStep = createAction('changeStep');
+
+// function createActionEx(type) {
+//   function actionCreator(payload) {
+//     return {
+//       type,
+//       payload
+//     }
+//   }
+
+//   actionCreator.toString = () => type;
+//   actionCreator.type = type;
+
+//   return actionCreator;
+// }
+
+
+// export function increment() {
+//   return {
+//     type: ACTION_TYPES.INCREMENT
+//   }
+// }
+
+// export const decrement = () => {
+//   return {
+//     type: ACTION_TYPES.DECREMENT
+//   }
+// }
+
+// export const changeStep = (newStep) => {
+//   return {
+//     type: ACTION_TYPES.CHANGE_STEP,
+//     payload: newStep
+//   }
+// }
 
 export const createTask = (taskText) => ({
   type: ACTION_TYPES.CREATE_TASK,
@@ -39,7 +60,7 @@ export const deleteTask = (id) => ({
  * @param {object} updateData.newValues 
  * @returns 
  */
-export const updateTask = ({id, newValues}) => ({
+export const updateTask = ({ id, newValues }) => ({
   type: ACTION_TYPES.UPDATE_TASK,
   payload: { id, newValues }
 })
