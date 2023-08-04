@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, Form, Formik } from 'formik';
-import { connect } from 'react-redux';
-import * as UserActionCreators from '../../redux/actions/userActionCreators';
+import { useDispatch } from 'react-redux';
+import { createUser } from '../../redux/slices/userSlice';
 
 const initialValues = {
   firstName: '',
@@ -11,14 +11,16 @@ const initialValues = {
   isMale: 'male',
 };
 
-const SignUpForm = ({createUserAction}) => {
+const SignUpForm = ({ createUserAction }) => {
+  const dispatch = useDispatch();
+
   const submitHandler = (values, formikBag) => {
     // console.log(values);
     const newUser = {
       ...values,
-      isMale : values.isMale === 'male'
-    }
-    createUserAction(newUser)
+      isMale: values.isMale === 'male',
+    };
+    dispatch(createUser(newUser));
     formikBag.resetForm();
   };
 
@@ -44,9 +46,4 @@ const SignUpForm = ({createUserAction}) => {
   );
 };
 
-const mDtP = (dispatch) => ({
-  createUserAction: (values) =>
-    dispatch(UserActionCreators.createUserRequest(values)),
-});
-
-export default connect(null, mDtP)(SignUpForm);
+export default SignUpForm;

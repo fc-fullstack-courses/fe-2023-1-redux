@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import counterReducer from './reducers/counterReducer';
-import userReducer from './reducers/userReducer';
+import userReducer from './slices/userSlice';
 import todoReducer from './slices/todoSlice';
 // import { legacy_createStore as createStore, applyMiddleware } from 'redux';
 // import createSagaMiddleware from 'redux-saga';
