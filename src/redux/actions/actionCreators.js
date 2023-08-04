@@ -44,23 +44,27 @@ export const changeStep = createAction('changeStep');
 //   }
 // }
 
-export const createTask = (taskText) => ({
-  type: ACTION_TYPES.CREATE_TASK,
-  payload: taskText
-});
+export const createTask = createAction('createTask');
+export const deleteTask = createAction('deleteTask');
+export const updateTask = createAction('updateTask');
 
-export const deleteTask = (id) => ({
-  type: ACTION_TYPES.DELETE_TASK,
-  payload: id
-})
-/**
- * 
- * @param {object} updateData 
- * @param {number} updateData.id 
- * @param {object} updateData.newValues 
- * @returns 
- */
-export const updateTask = ({ id, newValues }) => ({
-  type: ACTION_TYPES.UPDATE_TASK,
-  payload: { id, newValues }
-})
+// export const createTask = (taskText) => ({
+//   type: ACTION_TYPES.CREATE_TASK,
+//   payload: taskText
+// });
+
+// export const deleteTask = (id) => ({
+//   type: ACTION_TYPES.DELETE_TASK,
+//   payload: id
+// })
+// /**
+//  * 
+//  * @param {object} updateData 
+//  * @param {number} updateData.id 
+//  * @param {object} updateData.newValues 
+//  * @returns 
+//  */
+// export const updateTask = ({ id, newValues }) => ({
+//   type: ACTION_TYPES.UPDATE_TASK,
+//   payload: { id, newValues }
+// })

@@ -7,8 +7,8 @@ const HomePage = () => {
   return (
     <div>
       <Counter />
-      {/* <TodoForm /> */}
-      {/* <TodoList /> */}
+      <TodoForm />
+      <TodoList />
     </div>
   )
 }

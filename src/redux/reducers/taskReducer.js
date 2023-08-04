@@ -1,16 +1,12 @@
-import ACTION_TYPES from "../actions/actionTypes";
+import * as ActionCreators from '../actions/actionCreators';
 
 const initialState = {
-  tasks: [{
-    id: 0,
-    body: 'some text',
-    isDone: false
-  }]
+  tasks: []
 }
 
 function taskReducer(state = initialState, action) {
   switch (action.type) {
-    case ACTION_TYPES.CREATE_TASK: {
+    case ActionCreators.createTask.type: {
       const newTask = {
         id: Date.now(),
         body: action.payload,
@@ -19,12 +15,12 @@ function taskReducer(state = initialState, action) {
 
       return { ...state, tasks: [...state.tasks, newTask] }
     }
-    case ACTION_TYPES.DELETE_TASK: {
+    case ActionCreators.deleteTask.type: {
       const newTasks = state.tasks.filter(task => task.id !== action.payload);
 
       return { ...state, tasks: newTasks }
     }
-    case ACTION_TYPES.UPDATE_TASK: {
+    case ActionCreators.updateTask.type: {
       const { payload: { id, newValues } } = action;
 
       const newTasks = state.tasks.map(task => {
