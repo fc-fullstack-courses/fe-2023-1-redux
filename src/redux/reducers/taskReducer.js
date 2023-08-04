@@ -25,7 +25,9 @@ const taskReducer = createReducer(initialState, function (builder) {
   builder.addCase(ActionCreators.updateTask, (state, { payload: { id, newValues } }) => {
     const taskIndex = state.tasks.findIndex(task => task.id === id);
 
-    state.tasks[taskIndex].isDone = newValues.isDone;
+    for(const [key, value] of Object.entries(newValues)) {
+      state.tasks[taskIndex][key] = value;
+    }
   });
 });
 
