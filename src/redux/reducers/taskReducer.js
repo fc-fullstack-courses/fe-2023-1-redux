@@ -1,43 +1,68 @@
+import { createReducer } from '@reduxjs/toolkit';
 import * as ActionCreators from '../actions/actionCreators';
 
 const initialState = {
   tasks: []
 }
 
-function taskReducer(state = initialState, action) {
-  switch (action.type) {
-    case ActionCreators.createTask.type: {
-      const newTask = {
-        id: Date.now(),
-        body: action.payload,
-        isDone: false
-      }
+const taskReducer = createReducer(initialState, function (builder) {
 
-      return { ...state, tasks: [...state.tasks, newTask] }
+  builder.addCase(ActionCreators.createTask.type, (state, action) => {
+    const newTask = {
+      id: Date.now(),
+      body: action.payload,
+      isDone: false
     }
-    case ActionCreators.deleteTask.type: {
-      const newTasks = state.tasks.filter(task => task.id !== action.payload);
 
-      return { ...state, tasks: newTasks }
-    }
-    case ActionCreators.updateTask.type: {
-      const { payload: { id, newValues } } = action;
+    state.tasks.push(newTask);
+    // state.id = 245;
+  });
 
-      const newTasks = state.tasks.map(task => {
-        if (task.id !== id) {
-          return task;
-        }
+  builder.addCase(ActionCreators.deleteTask, (state, action) => {
+    state.tasks = state.tasks.filter(task => task.id !== action.payload);
+  });
 
-        return {
-          ...task,
-          ...newValues
-        }
-      });
+  builder.addCase(ActionCreators.updateTask, (state, { payload: { id, newValues } }) => {
+    const taskIndex = state.tasks.findIndex(task => task.id === id);
 
-      return { ...state, tasks: newTasks }
-    }
-    default: return state;
-  }
-}
+    state.tasks[taskIndex].isDone = newValues.isDone;
+  });
+});
+
+// function taskReducer(state = initialState, action) {
+//   switch (action.type) {
+//     case ActionCreators.createTask.type: {
+//       const newTask = {
+//         id: Date.now(),
+//         body: action.payload,
+//         isDone: false
+//       }
+
+//       return { ...state, tasks: [...state.tasks, newTask] }
+//     }
+//     case ActionCreators.deleteTask.type: {
+//       const newTasks = state.tasks.filter(task => task.id !== action.payload);
+
+//       return { ...state, tasks: newTasks }
+//     }
+//     case ActionCreators.updateTask.type: {
+//       const { payload: { id, newValues } } = action;
+
+//       const newTasks = state.tasks.map(task => {
+//         if (task.id !== id) {
+//           return task;
+//         }
+
+//         return {
+//           ...task,
+//           ...newValues
+//         }
+//       });
+
+//       return { ...state, tasks: newTasks }
+//     }
+//     default: return state;
+//   }
+// }
 
 export default taskReducer;
